@@ -1,0 +1,19 @@
+name: Code checks
+
+on:
+  push:
+    branches: [ master, dev ]
+  pull_request:
+    branches: [ master, dev ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/chechout@v2
+      - name: Install python
+        uses: actions/setup-python@v2
+        with:
+          python-versions: 3.9
+      - name: Run tests
+        run: python tests/tests.py
